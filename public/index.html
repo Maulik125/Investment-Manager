@@ -1,0 +1,23 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Investment Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Investment Summary</h1>
+  <div id="summary">
+    <p>Total Investments: <span id="total"></span></p>
+    <p>Fixed Deposits: <span id="fd-total"></span></p>
+    <p>Properties: <span id="property-total"></span></p>
+    <p>Stocks: <span id="stock-total"></span></p>
+  </div>
+
+  <canvas id="investmentChart" width="400" height="200"></canvas>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

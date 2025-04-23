@@ -1,0 +1,9 @@
+/* public/style.css */
+body {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+  }
+  #summary p {
+    margin: 0.5rem 0;
+  }
+  

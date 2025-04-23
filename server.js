@@ -1,18 +1,36 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
+const dotenv = require('dotenv');
 
+dotenv.config();
 const app = express();
-app.use(express.json());
-app.use(cors());
 
-// Import routes
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.static('public')); // for HTML/JS frontend
+
+// Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/investments', require('./routes/investmentRoutes'));
+app.use('/api', require('./routes/dashboardRoutes'));
 
-mongoose.connect(process.env.MONGO_URI, () => {
-  console.log('MongoDB connected');
+// MongoDB Connection
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('Connected to MongoDB');
+  } catch (err) {
+    console.error(' MongoDB connection failed:', err);
+    process.exit(1);
+  }
+};
+
+connectDB();
+
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(` Server running on port ${PORT}`);
 });
-
-app.listen(5000, () => console.log('Server running on port 5000'));
